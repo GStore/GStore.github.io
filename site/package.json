@@ -11,5 +11,8 @@
     "GStore"
   ],
   "author": "GStore",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "flexboxgrid": "^6.3.1"
+  }
 }
