@@ -2,7 +2,7 @@ const path = require('path');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
+const express = require("express");
 
 module.exports = () => {
    
@@ -11,7 +11,10 @@ module.exports = () => {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
         port: process.env.PORT || 9000,
-        open: true
+        open: true,
+        setup(app) {
+          app.use("/assets", express.static(path.resolve(__dirname, "../assets")));
+        }
       },
       // watch: true,
       context: __dirname,
@@ -39,9 +42,15 @@ module.exports = () => {
       },
 
       plugins: [
-          new ForkTsCheckerWebpackPlugin(), 
-          new HtmlWebpackPlugin(),
-          new MiniCssExtractPlugin()],
+        new ForkTsCheckerWebpackPlugin(), 
+        new HtmlWebpackPlugin({
+          template: "./html/index.html"
+        }),
+        new MiniCssExtractPlugin(),
+        // new CopyPlugin([
+        //     { from: "./html", to: "./dist" }
+        // ]),
+      ],
       mode: process.env.NODE_ENV || 'development',
       target: 'web',
   };
