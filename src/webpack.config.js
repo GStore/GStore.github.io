@@ -21,7 +21,7 @@ module.exports = () => {
       entry: path.resolve(__dirname, path.join("main.ts")),
 
       output: {
-          filename: 'main.js',
+          filename: 'assets/js/main.js',
           path: path.resolve(__dirname, './dist')
       },
 
@@ -44,9 +44,12 @@ module.exports = () => {
       plugins: [
         new ForkTsCheckerWebpackPlugin(), 
         new HtmlWebpackPlugin({
-          template: "./html/index.html"
+          template: "./html/index.html",
+          
         }),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+          filename: "assets/css/[name].css"
+        }),
         // new CopyPlugin([
         //     { from: "./html", to: "./dist" }
         // ]),
