@@ -1,2 +1,5 @@
 import "./css/index.css";
-console.log("hello world");
+import {GamePad} from "./app/gamepad"
+
+const gamepad = new GamePad();
+gamepad.start();

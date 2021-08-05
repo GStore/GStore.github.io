@@ -6,3 +6,5 @@ build:
 
 deploy: build
 	cp -r src/dist/. .
+
+publish: build deploy
